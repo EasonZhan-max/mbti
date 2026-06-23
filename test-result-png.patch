@@ -1,0 +1,31 @@
+diff --git a/components/test/test-result.tsx b/components/test/test-result.tsx
+--- a/components/test/test-result.tsx
++++ b/components/test/test-result.tsx
+@@
+-import Image from "next/image";
+ import {
+   Flex,
+   Heading,
+   Highlight,
+@@
+   Td,
+   UnorderedList,
+   ListItem,
++  Image,
+ } from "@chakra-ui/react";
+@@
+ export default function TestResult(props: TestResultProps) {
+   const personalityClassGroup = getPersonalityClassGroupByTestScores(
+     props.testResult.testScores
+   );
++  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+@@
+       <Image
+         alt="illustration"
+-        src={`/images/mbti/${personalityClassGroup.type.toLocaleUpperCase()}.png`}
+-        width={200}
+-        height={200}
++        src={`${basePath}/images/mbti/${personalityClassGroup.type.toLocaleUpperCase()}.png`}
++        boxSize="200px"
++        objectFit="contain"
+       />
