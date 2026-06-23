@@ -9,8 +9,8 @@ export default function HomePage() {
   const cardBg = useColorModeValue("rgba(255, 255, 255, .76)", "rgba(18, 25, 31, .62)");
   const cardImage = withBasePath("/images/home-bottom.png");
   const cardBackground = useColorModeValue(
-    `linear-gradient(180deg, rgba(255,255,255,.88), rgba(239,247,252,.78)), url(${cardImage})`,
-    `linear-gradient(180deg, rgba(9,16,24,.82), rgba(9,16,24,.66)), url(${cardImage})`
+    `linear-gradient(180deg, rgba(255,255,255,.70), rgba(239,247,252,.56)), url(${cardImage})`,
+    `linear-gradient(180deg, rgba(9,16,24,.44), rgba(9,16,24,.30)), url(${cardImage})`
   );
   const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "whiteAlpha.200");
   const textColor = useColorModeValue("#314a59", "whiteAlpha.800");
@@ -28,7 +28,8 @@ export default function HomePage() {
         py={{ base: 12, md: 16 }}
       >
         <Box
-          w="min(760px, 100%)"
+          w="min(920px, 100%)"
+          minH={{ base: "430px", md: "560px" }}
           px={{ base: 6, md: 12 }}
           py={{ base: 10, md: 14 }}
           border="1px solid"
@@ -37,8 +38,8 @@ export default function HomePage() {
           bg={cardBg}
           bgImage={cardBackground}
           bgRepeat="no-repeat"
-          bgSize="min(760px, 96%) auto"
-          bgPosition="center bottom -42px"
+          bgSize="cover"
+          bgPosition="center center"
           backdropFilter="blur(22px) saturate(150%)"
           boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
           textAlign="center"

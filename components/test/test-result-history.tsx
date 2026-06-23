@@ -20,6 +20,7 @@ export default function TestResultHistory(props: TestResultHistoryProps) {
     <Flex
       my={4}
       w={{ base: "full", lg: "50%" }}
+      maxW={{ base: "100%", md: "820px" }}
       h="full"
       px={{ base: 5, md: 8 }}
       py={8}
@@ -35,14 +36,29 @@ export default function TestResultHistory(props: TestResultHistoryProps) {
       backdropFilter="blur(22px) saturate(150%)"
       boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
     >
-      <Flex w="full" alignItems="center" justifyContent="space-between" gap={4}>
-        <Button as={Link} href="/" colorScheme="primary" leftIcon={<FiArrowLeft />}>
-          返回
+      <Flex w="full" alignItems="center" justifyContent="space-between" gap={{ base: 2, md: 4 }}>
+        <Button
+          as={Link}
+          href="/"
+          colorScheme="primary"
+          leftIcon={<FiArrowLeft />}
+          size={{ base: "sm", md: "md" }}
+          px={{ base: 3, md: 4 }}
+          minW={{ base: "auto", md: "92px" }}
+        >
+          <Text display={{ base: "none", sm: "inline" }}>返回</Text>
         </Button>
-        <Heading as="h1" textAlign="center" flex="1">
+        <Heading
+          as="h1"
+          textAlign="center"
+          flex="1"
+          fontSize={{ base: "3xl", md: "5xl" }}
+          lineHeight="1.2"
+          whiteSpace="nowrap"
+        >
           测试历史
         </Heading>
-        <Flex w={{ base: "72px", md: "92px" }} />
+        <Flex w={{ base: "44px", sm: "72px", md: "92px" }} />
       </Flex>
       <Flex w="full" gap={4} direction="column">
         {props.testResults.map((testResult) => (
@@ -50,8 +66,8 @@ export default function TestResultHistory(props: TestResultHistoryProps) {
             key={testResult.timestamp}
             as={Link}
             href={`/test/result/?testResultId=${testResult.timestamp}`}
-            py={3}
-            px={4}
+            py={{ base: 3, md: 4 }}
+            px={{ base: 4, md: 5 }}
             w="full"
             rounded="18px"
             cursor="pointer"
@@ -63,7 +79,7 @@ export default function TestResultHistory(props: TestResultHistoryProps) {
             color={cardColor}
             _hover={{ bg: itemHoverBg, transform: "translateY(-1px)" }}
           >
-            <Text fontWeight="700">
+            <Text fontWeight="700" fontSize={{ base: "md", md: "xl" }}>
               {dayjs(testResult.timestamp).format("YYYY年MM月DD日 HH:mm ")}
             </Text>
             <FiChevronRight />

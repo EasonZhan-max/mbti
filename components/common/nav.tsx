@@ -6,6 +6,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  IconButton,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { BiHistory } from "react-icons/bi";
@@ -98,20 +99,36 @@ export default function Nav() {
         </Menu>
         <ThemeToggle />
         <Link href="/test/result/history">
-          <Button
-            variant="solid"
-            leftIcon={<BiHistory size={22} />}
-            bg={buttonBg}
-            color={navColor}
-            border="1px solid"
-            borderColor={borderColor}
-            rounded="16px"
-            boxShadow="0 10px 24px rgba(143,175,214,.18)"
-            _hover={{ bg: buttonHoverBg, transform: "translateY(-1px)" }}
-            _active={{ transform: "translateY(0)" }}
-          >
-            测试历史
-          </Button>
+          <>
+            <Button
+              display={{ base: "none", md: "inline-flex" }}
+              variant="solid"
+              leftIcon={<BiHistory size={22} />}
+              bg={buttonBg}
+              color={navColor}
+              border="1px solid"
+              borderColor={borderColor}
+              rounded="16px"
+              boxShadow="0 10px 24px rgba(143,175,214,.18)"
+              _hover={{ bg: buttonHoverBg, transform: "translateY(-1px)" }}
+              _active={{ transform: "translateY(0)" }}
+            >
+              测试历史
+            </Button>
+            <IconButton
+              display={{ base: "inline-flex", md: "none" }}
+              aria-label="测试历史"
+              icon={<BiHistory size={22} />}
+              bg={buttonBg}
+              color={navColor}
+              border="1px solid"
+              borderColor={borderColor}
+              rounded="16px"
+              boxShadow="0 10px 24px rgba(143,175,214,.18)"
+              _hover={{ bg: buttonHoverBg, transform: "translateY(-1px)" }}
+              _active={{ transform: "translateY(0)" }}
+            />
+          </>
         </Link>
       </Flex>
     </Flex>
