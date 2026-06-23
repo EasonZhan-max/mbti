@@ -87,7 +87,7 @@ export default function HomePage() {
 
           <Box
             mt={8}
-            px={{ base: 2, md: 4 }}
+            px={{ base: 3, md: 4 }}
             py={{ base: 4, md: 5 }}
             rounded="22px"
             bg={useColorModeValue("rgba(255,255,255,.44)", "rgba(7,12,18,.42)")}
@@ -96,28 +96,34 @@ export default function HomePage() {
             backdropFilter="blur(12px)"
           >
             <Text
-              fontSize={{ base: "md", md: "lg" }}
+              fontSize={{ base: "sm", md: "lg" }}
               fontWeight="800"
+              lineHeight={{ base: "1.7", md: "1.6" }}
+              textAlign="center"
+              wordBreak="keep-all"
               color={useColorModeValue("#1e3550", "#F4F9FB")}
               mb={3}
             >
               本站为完全免费测试，不收取任何费用。
             </Text>
-            <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2}>
+            <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
               感谢
               <ChakraLink href="https://github.com/vsme" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
                 Rauf
               </ChakraLink>
-              、
               <ChakraLink href="https://github.com/rauf-21" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
                 rauf
               </ChakraLink>
               提供的技术数据开源。
             </Text>
-            <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2}>
-              本站 Github 仓库：
-              <ChakraLink href="https://github.com/EasonZhan-max/mbti" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700">
-                https://github.com/EasonZhan-max/mbti
+            <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
+              本站作者
+              <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
+                Eason
+              </ChakraLink>
+              主页链接：
+              <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1}>
+                https://github.com/EasonZhan-max
               </ChakraLink>
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor}>
