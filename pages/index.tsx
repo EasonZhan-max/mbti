@@ -3,11 +3,16 @@ import { Heading, Text, Highlight, Flex, Button, Box, useColorModeValue } from "
 import { FiArrowRight } from "react-icons/fi";
 
 import MainLayout from "../components/layouts/main-layout";
+import { withBasePath } from "../lib/asset-path";
 
 export default function HomePage() {
-  const cardBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(18, 25, 31, .58)");
+  const cardBg = useColorModeValue("rgba(255, 255, 255, .76)", "rgba(18, 25, 31, .62)");
+  const cardImage = withBasePath("/images/home-bottom.png");
+  const cardBackground = useColorModeValue(
+    `linear-gradient(180deg, rgba(255,255,255,.88), rgba(239,247,252,.78)), url(${cardImage})`,
+    `linear-gradient(180deg, rgba(9,16,24,.82), rgba(9,16,24,.66)), url(${cardImage})`
+  );
   const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "whiteAlpha.200");
-  const eyebrowColor = useColorModeValue("primary.700", "primary.100");
   const textColor = useColorModeValue("#314a59", "whiteAlpha.800");
   const highlightBg = useColorModeValue("rgba(159, 185, 201, .2)", "rgba(159, 185, 201, .22)");
   const highlightColor = useColorModeValue("#17232c", "white");
@@ -30,19 +35,14 @@ export default function HomePage() {
           borderColor={borderColor}
           rounded="32px"
           bg={cardBg}
+          bgImage={cardBackground}
+          bgRepeat="no-repeat"
+          bgSize="min(760px, 96%) auto"
+          bgPosition="center bottom -42px"
           backdropFilter="blur(22px) saturate(150%)"
           boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
           textAlign="center"
         >
-          <Text
-            mb={4}
-            color={eyebrowColor}
-            fontWeight="900"
-            letterSpacing=".18em"
-            textTransform="uppercase"
-          >
-            Eason MBTI Test
-          </Text>
           <Heading
             as="h1"
             lineHeight="tall"

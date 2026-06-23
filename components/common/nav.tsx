@@ -71,7 +71,7 @@ export default function Nav() {
             _hover={{ bg: buttonHoverBg, transform: "translateY(-1px)" }}
             _active={{ bg: buttonHoverBg }}
           >
-            关于本站
+            关于
           </MenuButton>
           <MenuList
             bg={menuBg}

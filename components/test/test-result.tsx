@@ -55,10 +55,25 @@ export default function TestResult(props: TestResultProps) {
       color={cardColor}
       backdropFilter="blur(22px) saturate(150%)"
       boxShadow="0 24px 80px rgba(0, 0, 0, .32)"
+      position="relative"
       overflowY={{ base: "visible", lg: "auto" }}
       overflowX="hidden"
       sx={{ scrollBehavior: "smooth", overscrollBehavior: "contain" }}
     >
+      <Button
+        as={Link}
+        href="/test"
+        colorScheme="primary"
+        leftIcon={<FiRefreshCw />}
+        position="absolute"
+        top={{ base: 4, md: 5 }}
+        right={{ base: 4, md: 5 }}
+        size={{ base: "sm", md: "md" }}
+        zIndex={2}
+        boxShadow="0 14px 32px rgba(143,175,214,.26)"
+      >
+        重新测试
+      </Button>
       <Heading
         id={personalityClassGroup.type}
         as="h1"
@@ -90,14 +105,6 @@ export default function TestResult(props: TestResultProps) {
         bg={imageBg}
         p={3}
       />
-      <Button
-        as={Link}
-        href="/test"
-        colorScheme="primary"
-        leftIcon={<FiRefreshCw />}
-      >
-        重新测试
-      </Button>
       <Heading
         scrollMarginTop={8}
         id="description"
