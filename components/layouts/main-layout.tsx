@@ -5,6 +5,7 @@ import { Flex, Box, useColorModeValue } from "@chakra-ui/react";
 import Nav from "../common/nav";
 import Footer from "../common/footer";
 import EasonBackground from "../common/eason-background";
+import { withBasePath } from "../../lib/asset-path";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -12,9 +13,8 @@ interface MainLayoutProps {
 }
 
 export default function MainLayout(props: MainLayoutProps) {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  const pageBg = useColorModeValue("#eef5f8", "#091018");
-  const pageColor = useColorModeValue("gray.800", "whiteAlpha.900");
+  const pageBg = useColorModeValue("#edf6fb", "#091018");
+  const pageColor = useColorModeValue("#17232c", "whiteAlpha.900");
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function MainLayout(props: MainLayoutProps) {
         />
         <link
           rel="icon"
-          href={`${basePath}/favicon.ico`}
+          href={withBasePath("/favicon.ico")}
         />
       </Head>
       <Box
@@ -41,7 +41,7 @@ export default function MainLayout(props: MainLayoutProps) {
         bg={pageBg}
         color={pageColor}
       >
-        <EasonBackground />
+        {!props.hideBackground && <EasonBackground />}
         <Box
           position="relative"
           zIndex={1}
@@ -51,7 +51,7 @@ export default function MainLayout(props: MainLayoutProps) {
           <Flex
             as="main"
             w="100%"
-            minH="calc(100vh - 80px)"
+            minH="calc(100vh - 96px)"
             justifyContent="center"
             alignItems="center"
             position="relative"

@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorMode } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 
 interface Star {
@@ -20,28 +20,10 @@ function createStar(width: number, height: number): Star {
 }
 
 export default function EasonBackground() {
+  const { colorMode } = useColorMode();
+  const isLight = colorMode === "light";
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const meteorLayerRef = useRef<HTMLDivElement | null>(null);
-  const gradientTop = useColorModeValue("rgba(238, 245, 248, 0.98)", "rgba(4, 9, 18, 0.98)");
-  const gradientMiddle = useColorModeValue("rgba(229, 239, 244, 0.96)", "rgba(9, 16, 24, 0.96)");
-  const gradientBottom = useColorModeValue("rgba(210, 226, 235, 0.94)", "rgba(23, 35, 44, 0.94)");
-  const starRgb = useColorModeValue("86, 119, 137", "159, 185, 201");
-  const meteorBg = useColorModeValue(
-    "linear-gradient(90deg, rgba(86,119,137,.82), rgba(138,176,200,.28), transparent)",
-    "linear-gradient(90deg, rgba(235,248,255,.95), rgba(204,231,246,.35), transparent)"
-  );
-  const meteorShadow = useColorModeValue(
-    "drop-shadow(0 0 7px rgba(86,119,137,.25))",
-    "drop-shadow(0 0 7px rgba(190,228,247,.35))"
-  );
-  const mistLeftBg = useColorModeValue(
-    "radial-gradient(circle, rgba(138,176,200,.26), transparent 70%)",
-    "radial-gradient(circle, rgba(183,214,232,.34), transparent 70%)"
-  );
-  const mistRightBg = useColorModeValue(
-    "radial-gradient(circle, rgba(201,219,230,.28), transparent 72%)",
-    "radial-gradient(circle, rgba(236,211,226,.28), transparent 72%)"
-  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -86,9 +68,15 @@ export default function EasonBackground() {
       const height = window.innerHeight;
       ctx.clearRect(0, 0, width, height);
       const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      gradient.addColorStop(0, gradientTop);
-      gradient.addColorStop(0.52, gradientMiddle);
-      gradient.addColorStop(1, gradientBottom);
+      if (colorMode === "light") {
+        gradient.addColorStop(0, "rgba(247, 251, 253, 0.98)");
+        gradient.addColorStop(0.52, "rgba(235, 244, 249, 0.96)");
+        gradient.addColorStop(1, "rgba(221, 236, 244, 0.94)");
+      } else {
+        gradient.addColorStop(0, "rgba(4, 9, 18, 0.98)");
+        gradient.addColorStop(0.52, "rgba(9, 16, 24, 0.96)");
+        gradient.addColorStop(1, "rgba(23, 35, 44, 0.94)");
+      }
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
@@ -96,7 +84,10 @@ export default function EasonBackground() {
         star.a += star.s;
         const alpha = 0.25 + Math.abs(Math.sin(star.a)) * 0.75;
         ctx.beginPath();
-        ctx.fillStyle = `rgba(${starRgb}, ${alpha})`;
+        ctx.fillStyle =
+          colorMode === "light"
+            ? `rgba(86, 119, 137, ${0.28 + alpha * 0.42})`
+            : `rgba(159, 185, 201, ${alpha})`;
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fill();
         star.y += 0.05;
@@ -118,7 +109,7 @@ export default function EasonBackground() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resize);
     };
-  }, [gradientTop, gradientMiddle, gradientBottom, starRgb]);
+  }, [colorMode]);
 
   useEffect(() => {
     const layer = meteorLayerRef.current;
@@ -169,10 +160,15 @@ export default function EasonBackground() {
           width: "180px",
           height: "2px",
           borderRadius: "999px",
-          background: meteorBg,
+          background:
+            isLight
+              ? "linear-gradient(90deg, rgba(106,139,157,.7), rgba(159,185,201,.22), transparent)"
+              : "linear-gradient(90deg, rgba(235,248,255,.95), rgba(204,231,246,.35), transparent)",
           transform: "rotate(-28deg)",
           opacity: 0,
-          filter: meteorShadow,
+          filter: isLight
+            ? "drop-shadow(0 0 7px rgba(120,150,167,.18))"
+            : "drop-shadow(0 0 7px rgba(190,228,247,.35))",
         },
         ".eason-meteor.fly": {
           animation: "easonMeteorFly linear forwards",
@@ -200,9 +196,11 @@ export default function EasonBackground() {
           top: "18vh",
           borderRadius: "50%",
           filter: "blur(82px)",
-          opacity: 0.18,
-          mixBlendMode: "screen",
-          background: mistLeftBg,
+          opacity: isLight ? 0.34 : 0.18,
+          mixBlendMode: isLight ? "multiply" : "screen",
+          background: isLight
+            ? "radial-gradient(circle, rgba(126,163,184,.28), transparent 70%)"
+            : "radial-gradient(circle, rgba(183,214,232,.34), transparent 70%)",
           animation: "easonFloatMist 22s ease-in-out infinite",
         }}
         _after={{
@@ -214,9 +212,11 @@ export default function EasonBackground() {
           top: "18vh",
           borderRadius: "50%",
           filter: "blur(82px)",
-          opacity: 0.18,
-          mixBlendMode: "screen",
-          background: mistRightBg,
+          opacity: isLight ? 0.28 : 0.18,
+          mixBlendMode: isLight ? "multiply" : "screen",
+          background: isLight
+            ? "radial-gradient(circle, rgba(202,219,229,.34), transparent 72%)"
+            : "radial-gradient(circle, rgba(236,211,226,.28), transparent 72%)",
           animation: "easonFloatMist 22s ease-in-out infinite",
           animationDelay: "-11s",
         }}

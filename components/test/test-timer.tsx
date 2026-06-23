@@ -10,9 +10,9 @@ export default function TestTimer() {
   const [elapsedTime, setElapsedTime] = useState<Option<dayjs.Dayjs>>(
     Option.None()
   );
-  const timerBg = useColorModeValue("rgba(255, 255, 255, .76)", "whiteAlpha.100");
-  const timerBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
-  const timerColor = useColorModeValue("gray.800", "whiteAlpha.900");
+  const bg = useColorModeValue("rgba(255, 255, 255, .68)", "rgba(255, 255, 255, .1)");
+  const color = useColorModeValue("#17232c", "#f4f9fb");
+  const borderColor = useColorModeValue("rgba(86, 119, 137, .22)", "rgba(255, 255, 255, .18)");
 
   useEffect(() => {
     if (elapsedTime.isNone()) {
@@ -31,17 +31,18 @@ export default function TestTimer() {
 
   return (
     <Flex
-      width={110}
+      width={120}
       px={3}
-      h={10}
+      h={11}
       columnGap={2}
       justifyContent="flex-start"
       alignItems="center"
       border="1px solid"
-      borderColor={timerBorder}
-      rounded="14px"
-      bg={timerBg}
-      color={timerColor}
+      borderColor={borderColor}
+      rounded="16px"
+      bg={bg}
+      color={color}
+      fontWeight="800"
     >
       <FiClock size={20} />
       <Text fontWeight="bold">

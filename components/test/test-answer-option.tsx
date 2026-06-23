@@ -4,10 +4,12 @@ export default function TestAnswerOption(props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props);
   const input = getInputProps();
   const checkbox = getCheckboxProps();
-  const optionBg = useColorModeValue("rgba(255, 255, 255, .76)", "whiteAlpha.100");
-  const optionHoverBg = useColorModeValue("rgba(230, 241, 246, .96)", "whiteAlpha.200");
-  const optionBorder = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
-  const optionColor = useColorModeValue("gray.800", "whiteAlpha.900");
+  const bg = useColorModeValue("rgba(255, 255, 255, .64)", "rgba(255, 255, 255, .1)");
+  const color = useColorModeValue("#17232c", "#f4f9fb");
+  const borderColor = useColorModeValue("rgba(86, 119, 137, .2)", "rgba(255, 255, 255, .18)");
+  const hoverBg = useColorModeValue("rgba(255, 255, 255, .86)", "rgba(255, 255, 255, .18)");
+  const checkedBg = useColorModeValue("primary.700", "primary.200");
+  const checkedColor = useColorModeValue("white", "#0b141c");
 
   return (
     <Box
@@ -21,20 +23,21 @@ export default function TestAnswerOption(props: any) {
         cursor="pointer"
         borderWidth={1}
         borderRadius="18px"
-        borderColor={optionBorder}
-        bg={optionBg}
-        color={optionColor}
+        borderColor={borderColor}
+        bg={bg}
+        color={color}
+        fontWeight="700"
         userSelect="none"
         transition=".18s ease"
         _hover={{
-          bg: optionHoverBg,
+          bg: hoverBg,
           transform: "translateY(-1px)",
         }}
         _checked={{
-          bg: "primary.600",
-          color: "white",
-          borderColor: "primary.300",
-          boxShadow: "0 14px 32px rgba(159, 185, 201, .24)",
+          bg: checkedBg,
+          color: checkedColor,
+          borderColor: checkedBg,
+          boxShadow: "0 14px 32px rgba(86, 119, 137, .24)",
         }}
         _focus={{
           boxShadow: "outline",

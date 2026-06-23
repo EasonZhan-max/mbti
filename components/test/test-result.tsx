@@ -1,5 +1,6 @@
 import {
   Flex,
+  Box,
   Heading,
   Highlight,
   Text,
@@ -10,7 +11,6 @@ import {
   Td,
   UnorderedList,
   ListItem,
-  Image,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -18,20 +18,21 @@ import {
   TestResult as ITestResult,
   getPersonalityClassGroupByTestScores,
 } from "../../lib/personality-test";
+import { withBasePath } from "../../lib/asset-path";
 
 interface TestResultProps {
   testResult: ITestResult;
 }
 
 export default function TestResult(props: TestResultProps) {
+  const cardBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(18, 25, 31, .62)");
+  const cardColor = useColorModeValue("#17232c", "#f4f9fb");
+  const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "rgba(255, 255, 255, .18)");
+  const highlightColor = useColorModeValue("primary.700", "primary.100");
+  const imageBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .08)");
   const personalityClassGroup = getPersonalityClassGroupByTestScores(
     props.testResult.testScores
   );
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  const cardBg = useColorModeValue("rgba(255, 255, 255, .78)", "rgba(18, 25, 31, .62)");
-  const cardBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
-  const cardColor = useColorModeValue("gray.800", "whiteAlpha.900");
-  const titleColor = useColorModeValue("primary.700", "primary.100");
 
   return (
     <Flex
@@ -47,12 +48,12 @@ export default function TestResult(props: TestResultProps) {
       alignItems="center"
       direction="column"
       border="1px solid"
-      borderColor={cardBorder}
+      borderColor={borderColor}
       rounded="28px"
       bg={cardBg}
       color={cardColor}
       backdropFilter="blur(22px) saturate(150%)"
-      boxShadow="0 24px 80px rgba(0, 0, 0, .18)"
+      boxShadow="0 24px 80px rgba(0, 0, 0, .32)"
     >
       <Heading
         id={personalityClassGroup.type}
@@ -61,16 +62,29 @@ export default function TestResult(props: TestResultProps) {
       >
         <Highlight
           query={personalityClassGroup.type}
-          styles={{ color: titleColor }}
+          styles={{ color: highlightColor }}
         >
-          {`${personalityClassGroup.type}`}
+          { `${personalityClassGroup.type}` }
+          {/* {`${personalityClassGroup.type} - ${personalityClassGroup.name}`} */}
         </Highlight>
       </Heading>
-      <Image
-        alt="illustration"
-        src={`${basePath}/images/mbti/${personalityClassGroup.type.toLocaleUpperCase()}.png`}
-        boxSize="200px"
+      {/* <Text
+        fontSize="lg"
+        fontWeight="bold"
+        textAlign="center"
+      >
+        {personalityClassGroup.nameDescription}
+      </Text> */}
+      <Box
+        as="img"
+        alt={`${personalityClassGroup.type} illustration`}
+        src={withBasePath(`/images/mbti/${personalityClassGroup.type.toLocaleUpperCase()}.png`)}
+        w="200px"
+        h="200px"
         objectFit="contain"
+        rounded="28px"
+        bg={imageBg}
+        p={3}
       />
       <Heading
         scrollMarginTop={8}
@@ -108,25 +122,25 @@ export default function TestResult(props: TestResultProps) {
       <Table>
         <Tbody>
           <Tr>
-            <Th color={cardColor}>主导功能</Th>
+            <Th>主导功能</Th>
             <Td>
               {personalityClassGroup.jungianFunctionalPreference.dominant}
             </Td>
           </Tr>
           <Tr>
-            <Th color={cardColor}>辅助功能</Th>
+            <Th>辅助功能</Th>
             <Td>
               {personalityClassGroup.jungianFunctionalPreference.auxiliary}
             </Td>
           </Tr>
           <Tr>
-            <Th color={cardColor}>第三功能</Th>
+            <Th>第三功能</Th>
             <Td>
               {personalityClassGroup.jungianFunctionalPreference.tertiary}
             </Td>
           </Tr>
           <Tr>
-            <Th color={cardColor}>劣势功能</Th>
+            <Th>劣势功能</Th>
             <Td>
               {personalityClassGroup.jungianFunctionalPreference.inferior}
             </Td>

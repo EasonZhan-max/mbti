@@ -1,24 +1,16 @@
 import Link from "next/link";
-import {
-  Heading,
-  Text,
-  Highlight,
-  Flex,
-  Button,
-  Box,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Heading, Text, Highlight, Flex, Button, Box, useColorModeValue } from "@chakra-ui/react";
 import { FiArrowRight } from "react-icons/fi";
 
 import MainLayout from "../components/layouts/main-layout";
 
 export default function HomePage() {
-  const cardBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(18, 25, 31, .56)");
-  const cardBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
-  const headingColor = useColorModeValue("gray.900", "white");
-  const labelColor = useColorModeValue("primary.700", "primary.100");
-  const highlightBg = useColorModeValue("rgba(201, 219, 230, .42)", "rgba(159, 185, 201, .22)");
-  const highlightColor = useColorModeValue("primary.900", "white");
+  const cardBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(18, 25, 31, .58)");
+  const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "whiteAlpha.200");
+  const eyebrowColor = useColorModeValue("primary.700", "primary.100");
+  const textColor = useColorModeValue("#314a59", "whiteAlpha.800");
+  const highlightBg = useColorModeValue("rgba(159, 185, 201, .2)", "rgba(159, 185, 201, .22)");
+  const highlightColor = useColorModeValue("#17232c", "white");
 
   return (
     <MainLayout>
@@ -35,17 +27,16 @@ export default function HomePage() {
           px={{ base: 6, md: 12 }}
           py={{ base: 10, md: 14 }}
           border="1px solid"
-          borderColor={cardBorder}
+          borderColor={borderColor}
           rounded="32px"
           bg={cardBg}
-          color={headingColor}
           backdropFilter="blur(22px) saturate(150%)"
-          boxShadow="0 24px 80px rgba(0, 0, 0, .18)"
+          boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
           textAlign="center"
         >
           <Text
             mb={4}
-            color={labelColor}
+            color={eyebrowColor}
             fontWeight="900"
             letterSpacing=".18em"
             textTransform="uppercase"
@@ -71,12 +62,19 @@ export default function HomePage() {
               参加 MBTI 性格测试
             </Highlight>
           </Heading>
+          <Text
+            mt={6}
+            fontSize={{ base: "lg", md: "xl" }}
+            color={textColor}
+            align="center"
+          >
+            快速了解自己的性格倾向。
+          </Text>
           <Link href="/test">
             <Button
               mt={10}
               w="max-content"
               colorScheme="primary"
-              color="white"
               variant="solid"
               size="lg"
               rounded="18px"

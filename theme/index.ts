@@ -1,8 +1,4 @@
-import {
-  extendTheme,
-  type StyleFunctionProps,
-  type ThemeConfig,
-} from "@chakra-ui/react";
+import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -29,10 +25,43 @@ const theme = extendTheme({
     heading: `Poppins, sans-serif`,
     body: `'Poppins', sans-serif`,
   },
+  components: {
+    Button: {
+      baseStyle: {
+        fontWeight: 800,
+      },
+      variants: {
+        solid: (props: any) => {
+          if (props.colorScheme === "primary") {
+            return {
+              bg: props.colorMode === "dark" ? "primary.200" : "primary.700",
+              color: props.colorMode === "dark" ? "#0b141c" : "white",
+              _hover: {
+                bg: props.colorMode === "dark" ? "primary.100" : "primary.800",
+                _disabled: {
+                  bg: props.colorMode === "dark" ? "primary.200" : "primary.700",
+                },
+              },
+              _active: {
+                bg: props.colorMode === "dark" ? "primary.300" : "primary.900",
+              },
+              _disabled: {
+                opacity: 0.56,
+                color: props.colorMode === "dark" ? "#0b141c" : "white",
+              },
+            };
+          }
+
+          return {};
+        },
+      },
+    },
+  },
   styles: {
-    global: (props: StyleFunctionProps) => ({
+    global: (props: any) => ({
       "html, body": {
-        background: props.colorMode === "dark" ? "#091018" : "#eef5f8",
+        background: props.colorMode === "dark" ? "#091018" : "#edf6fb",
+        color: props.colorMode === "dark" ? "#f4f9fb" : "#17232c",
       },
       "#__next": {
         minHeight: "100vh",

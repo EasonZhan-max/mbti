@@ -15,10 +15,10 @@ import useUserTestAnswersStore from "../../store/use-user-test-answers";
 
 export default function TestQuestion() {
   const router = useRouter();
-  const controlBg = useColorModeValue("rgba(255, 255, 255, .78)", "whiteAlpha.100");
-  const controlHoverBg = useColorModeValue("rgba(230, 241, 246, .96)", "whiteAlpha.200");
-  const controlBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
-  const controlColor = useColorModeValue("gray.800", "whiteAlpha.900");
+  const secondaryButtonBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .12)");
+  const secondaryButtonColor = useColorModeValue("#17232c", "#f4f9fb");
+  const secondaryBorderColor = useColorModeValue("rgba(86, 119, 137, .22)", "rgba(255, 255, 255, .18)");
+  const secondaryHoverBg = useColorModeValue("rgba(255, 255, 255, .94)", "rgba(255, 255, 255, .2)");
 
   const { userTestAnswers, setUserTestAnswers } = useUserTestAnswersStore();
 
@@ -150,12 +150,13 @@ export default function TestQuestion() {
         <Button
           w="full"
           variant="solid"
-          bg={controlBg}
-          color={controlColor}
+          rounded="18px"
+          bg={secondaryButtonBg}
+          color={secondaryButtonColor}
           border="1px solid"
-          borderColor={controlBorder}
-          _hover={{ bg: controlHoverBg }}
-          _disabled={{ opacity: 0.45, cursor: "not-allowed" }}
+          borderColor={secondaryBorderColor}
+          _hover={{ bg: secondaryHoverBg }}
+          _disabled={{ opacity: .56, color: secondaryButtonColor, bg: secondaryButtonBg, cursor: "not-allowed" }}
           {...(currentPersonalityTestIndex === 0 && {
             disabled: true,
           })}
@@ -168,7 +169,7 @@ export default function TestQuestion() {
           <Button
             w="full"
             colorScheme="primary"
-            color="white"
+            rounded="18px"
             onClick={handleSeeResultButtonClick}
           >
             查看结果
@@ -177,9 +178,8 @@ export default function TestQuestion() {
           <Button
             w="full"
             colorScheme="primary"
-            color="white"
+            rounded="18px"
             variant="solid"
-            _disabled={{ opacity: 0.45, cursor: "not-allowed" }}
             {...(!isUserAlreadyPickAnswer && {
               disabled: true,
             })}

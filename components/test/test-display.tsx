@@ -7,9 +7,9 @@ import TestQuestion from "./test-question";
 
 export default function TestDisplay() {
   const [showTestInstructions, setShowTestInstructions] = useState(true);
-  const panelBg = useColorModeValue("rgba(255, 255, 255, .76)", "rgba(18, 25, 31, .58)");
-  const panelBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
-  const panelColor = useColorModeValue("gray.800", "whiteAlpha.900");
+  const cardBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(18, 25, 31, .58)");
+  const cardColor = useColorModeValue("#17232c", "#f4f9fb");
+  const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "rgba(255, 255, 255, .18)");
 
   function handleShowInstructionsButtonClick() {
     setShowTestInstructions(true);
@@ -44,12 +44,12 @@ export default function TestDisplay() {
         px={{ base: 5, md: 8 }}
         py={{ base: 6, md: 8 }}
         border="1px solid"
-        borderColor={panelBorder}
+        borderColor={borderColor}
         rounded="28px"
-        bg={panelBg}
-        color={panelColor}
+        bg={cardBg}
+        color={cardColor}
         backdropFilter="blur(22px) saturate(150%)"
-        boxShadow="0 24px 80px rgba(0, 0, 0, .18)"
+        boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
       >
         {showTestInstructions ? (
           <TestInstructions

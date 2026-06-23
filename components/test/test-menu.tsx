@@ -8,10 +8,10 @@ interface TestMenuProps {
 }
 
 export default function TestMenu(props: TestMenuProps) {
-  const buttonBg = useColorModeValue("rgba(255, 255, 255, .78)", "whiteAlpha.200");
-  const buttonHoverBg = useColorModeValue("rgba(230, 241, 246, .96)", "whiteAlpha.300");
-  const buttonBorder = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
-  const buttonColor = useColorModeValue("gray.800", "white");
+  const buttonBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .12)");
+  const buttonColor = useColorModeValue("#17232c", "#f4f9fb");
+  const borderColor = useColorModeValue("rgba(86, 119, 137, .22)", "rgba(255, 255, 255, .18)");
+  const hoverBg = useColorModeValue("rgba(255, 255, 255, .94)", "rgba(255, 255, 255, .2)");
 
   return (
     <Flex
@@ -23,20 +23,20 @@ export default function TestMenu(props: TestMenuProps) {
       alignItems="flex-end"
       gap={2}
     >
-      <Flex gap={2}>
+      <Flex gap={3}>
         <TestTimer />
         <Button
           aria-label="instructions"
           variant="solid"
           leftIcon={<RiInformationLine size={24} />}
           onClick={props.onShowInstructionsButtonClick}
-          h={10}
+          h={11}
+          rounded="16px"
           bg={buttonBg}
           color={buttonColor}
           border="1px solid"
-          borderColor={buttonBorder}
-          rounded="14px"
-          _hover={{ bg: buttonHoverBg }}
+          borderColor={borderColor}
+          _hover={{ bg: hoverBg, transform: "translateY(-1px)" }}
         >
           说明
         </Button>
