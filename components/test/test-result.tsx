@@ -1,6 +1,8 @@
+import Link from "next/link";
 import {
   Flex,
   Box,
+  Button,
   Heading,
   Highlight,
   Text,
@@ -13,6 +15,7 @@ import {
   ListItem,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { FiRefreshCw } from "react-icons/fi";
 
 import {
   TestResult as ITestResult,
@@ -36,12 +39,10 @@ export default function TestResult(props: TestResultProps) {
 
   return (
     <Flex
-      my={4}
-      w={{
-        base: "full",
-        lg: "50%",
-      }}
-      h="full"
+      my={{ base: 4, lg: 0 }}
+      w={{ base: "full", lg: "min(52vw, 720px)" }}
+      h={{ base: "auto", lg: "100%" }}
+      maxH={{ base: "none", lg: "calc(100vh - 132px)" }}
       px={{ base: 5, md: 8 }}
       py={8}
       gap={4}
@@ -54,6 +55,9 @@ export default function TestResult(props: TestResultProps) {
       color={cardColor}
       backdropFilter="blur(22px) saturate(150%)"
       boxShadow="0 24px 80px rgba(0, 0, 0, .32)"
+      overflowY={{ base: "visible", lg: "auto" }}
+      overflowX="hidden"
+      sx={{ scrollBehavior: "smooth", overscrollBehavior: "contain" }}
     >
       <Heading
         id={personalityClassGroup.type}
@@ -86,6 +90,14 @@ export default function TestResult(props: TestResultProps) {
         bg={imageBg}
         p={3}
       />
+      <Button
+        as={Link}
+        href="/test"
+        colorScheme="primary"
+        leftIcon={<FiRefreshCw />}
+      >
+        重新测试
+      </Button>
       <Heading
         scrollMarginTop={8}
         id="description"

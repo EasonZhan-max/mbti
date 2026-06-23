@@ -9,15 +9,15 @@ const theme = extendTheme({
   config,
   colors: {
     primary: {
-      "50": "#f4f9fb",
-      "100": "#e6f1f6",
-      "200": "#c9dbe6",
-      "300": "#b8cedb",
-      "400": "#9fb9c9",
-      "500": "#8ab0c8",
-      "600": "#6f96ac",
-      "700": "#567789",
-      "800": "#314a59",
+      "50": "#F6FAFF",
+      "100": "#EEF5FF",
+      "200": "#D8E6F8",
+      "300": "#C3D4EC",
+      "400": "#B8CCE8",
+      "500": "#C3D4EC",
+      "600": "#B8CCE8",
+      "700": "#8FAFD6",
+      "800": "#5F83AE",
       "900": "#17232c",
     },
   },
@@ -28,26 +28,35 @@ const theme = extendTheme({
   components: {
     Button: {
       baseStyle: {
-        fontWeight: 800,
+        fontWeight: 900,
+        borderRadius: "18px",
+        transition: ".18s ease",
       },
       variants: {
         solid: (props: any) => {
           if (props.colorScheme === "primary") {
             return {
-              bg: props.colorMode === "dark" ? "primary.200" : "primary.700",
-              color: props.colorMode === "dark" ? "#0b141c" : "white",
+              bg: props.colorMode === "dark" ? "#C3D4EC" : "#B8CCE8",
+              color: "#0b141c",
+              border: "1px solid rgba(255,255,255,0.15)",
+              boxShadow: "0 10px 24px rgba(143,175,214,.32)",
               _hover: {
-                bg: props.colorMode === "dark" ? "primary.100" : "primary.800",
+                bg: "#D8E6F8",
+                transform: "translateY(-1px)",
+                boxShadow: "0 14px 30px rgba(143,175,214,.42)",
                 _disabled: {
-                  bg: props.colorMode === "dark" ? "primary.200" : "primary.700",
+                  bg: props.colorMode === "dark" ? "#C3D4EC" : "#B8CCE8",
+                  transform: "none",
                 },
               },
               _active: {
-                bg: props.colorMode === "dark" ? "primary.300" : "primary.900",
+                bg: "#B8CCE8",
+                transform: "translateY(0)",
               },
               _disabled: {
                 opacity: 0.56,
-                color: props.colorMode === "dark" ? "#0b141c" : "white",
+                color: "#0b141c",
+                cursor: "not-allowed",
               },
             };
           }
@@ -66,8 +75,19 @@ const theme = extendTheme({
       "#__next": {
         minHeight: "100vh",
       },
+      "*": {
+        WebkitTapHighlightColor: "transparent",
+      },
+      "::-webkit-scrollbar": {
+        width: "10px",
+        height: "10px",
+      },
+      "::-webkit-scrollbar-thumb": {
+        background: props.colorMode === "dark" ? "rgba(195,212,236,.32)" : "rgba(143,175,214,.42)",
+        borderRadius: "999px",
+      },
       "::selection": {
-        background: "rgba(159, 185, 201, .35)",
+        background: "rgba(195, 212, 236, .42)",
       },
     }),
   },

@@ -32,7 +32,7 @@ export default function TestResultPage() {
   }, [router.isReady, router.query.testResultId]);
 
   return (
-    <MainLayout hideBackground={true}>
+    <MainLayout lockViewport hideFooter>
       {testResult.match({
         NotAsked: () => <Text>加载中</Text>,
         Loading: () => <Text>加载中</Text>,
@@ -43,11 +43,14 @@ export default function TestResultPage() {
               value.match({
                 Some: (data) => (
                   <Flex
-                    h="full"
-                    direction={{
-                      base: "column",
-                      lg: "row",
-                    }}
+                    w="full"
+                    h={{ base: "auto", lg: "100%" }}
+                    maxW="1440px"
+                    py={{ base: 4, lg: 5 }}
+                    direction={{ base: "column", lg: "row" }}
+                    alignItems={{ base: "center", lg: "flex-start" }}
+                    justifyContent="center"
+                    overflow={{ base: "visible", lg: "hidden" }}
                   >
                     <TestResultStats testResult={data} />
                     <TestResult testResult={data} />

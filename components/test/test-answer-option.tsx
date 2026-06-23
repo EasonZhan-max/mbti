@@ -4,18 +4,14 @@ export default function TestAnswerOption(props: any) {
   const { getInputProps, getCheckboxProps } = useRadio(props);
   const input = getInputProps();
   const checkbox = getCheckboxProps();
-  const bg = useColorModeValue("rgba(255, 255, 255, .64)", "rgba(255, 255, 255, .1)");
+  const bg = useColorModeValue("rgba(255,255,255,.62)", "rgba(255,255,255,0.08)");
   const color = useColorModeValue("#17232c", "#f4f9fb");
-  const borderColor = useColorModeValue("rgba(86, 119, 137, .2)", "rgba(255, 255, 255, .18)");
-  const hoverBg = useColorModeValue("rgba(255, 255, 255, .86)", "rgba(255, 255, 255, .18)");
-  const checkedBg = useColorModeValue("primary.700", "primary.200");
-  const checkedColor = useColorModeValue("white", "#0b141c");
+  const hoverBg = useColorModeValue("#D8E6F8", "rgba(216,230,248,.18)");
+  const checkedBg = useColorModeValue("#B8CCE8", "#C3D4EC");
+  const checkedColor = "#0b141c";
 
   return (
-    <Box
-      w="full"
-      as="label"
-    >
+    <Box w="full" as="label">
       <input {...input} />
       <Box
         px={5}
@@ -23,25 +19,21 @@ export default function TestAnswerOption(props: any) {
         cursor="pointer"
         borderWidth={1}
         borderRadius="18px"
-        borderColor={borderColor}
+        borderColor="rgba(255,255,255,0.15)"
         bg={bg}
         color={color}
-        fontWeight="700"
+        fontWeight="800"
         userSelect="none"
         transition=".18s ease"
-        _hover={{
-          bg: hoverBg,
-          transform: "translateY(-1px)",
-        }}
+        boxShadow="0 10px 24px rgba(143,175,214,.12)"
+        _hover={{ bg: hoverBg, transform: "translateY(-1px)" }}
         _checked={{
           bg: checkedBg,
           color: checkedColor,
-          borderColor: checkedBg,
-          boxShadow: "0 14px 32px rgba(86, 119, 137, .24)",
+          borderColor: "rgba(255,255,255,0.15)",
+          boxShadow: "0 14px 32px rgba(143,175,214,.35)",
         }}
-        _focus={{
-          boxShadow: "outline",
-        }}
+        _focus={{ boxShadow: "outline" }}
         {...checkbox}
       >
         {props.children}

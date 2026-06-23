@@ -3,10 +3,9 @@ import { FiMoon, FiSun } from "react-icons/fi";
 
 export default function ThemeToggle() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .12)");
+  const bg = useColorModeValue("rgba(255,255,255,.58)", "rgba(255,255,255,0.08)");
   const color = useColorModeValue("#17232c", "#f4f9fb");
-  const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "rgba(255, 255, 255, .18)");
-  const hoverBg = useColorModeValue("rgba(255, 255, 255, .92)", "rgba(255, 255, 255, .2)");
+  const hoverBg = useColorModeValue("#D8E6F8", "rgba(216,230,248,.18)");
 
   return (
     <IconButton
@@ -16,10 +15,10 @@ export default function ThemeToggle() {
       rounded="16px"
       bg={bg}
       color={color}
-      border="1px solid"
-      borderColor={borderColor}
+      border="1px solid rgba(255,255,255,0.15)"
+      boxShadow="0 10px 24px rgba(143,175,214,.18)"
       _hover={{ bg: hoverBg, transform: "translateY(-1px)" }}
-      _active={{ transform: "translateY(0)" }}
+      _active={{ transform: "translateY(0)", bg: hoverBg }}
     />
   );
 }

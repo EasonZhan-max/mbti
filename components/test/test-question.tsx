@@ -15,10 +15,9 @@ import useUserTestAnswersStore from "../../store/use-user-test-answers";
 
 export default function TestQuestion() {
   const router = useRouter();
-  const secondaryButtonBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .12)");
+  const secondaryButtonBg = useColorModeValue("rgba(255,255,255,.62)", "rgba(255,255,255,0.08)");
   const secondaryButtonColor = useColorModeValue("#17232c", "#f4f9fb");
-  const secondaryBorderColor = useColorModeValue("rgba(86, 119, 137, .22)", "rgba(255, 255, 255, .18)");
-  const secondaryHoverBg = useColorModeValue("rgba(255, 255, 255, .94)", "rgba(255, 255, 255, .2)");
+  const secondaryHoverBg = useColorModeValue("#D8E6F8", "rgba(216,230,248,.18)");
 
   const { userTestAnswers, setUserTestAnswers } = useUserTestAnswersStore();
 
@@ -107,82 +106,60 @@ export default function TestQuestion() {
       alignItems="center"
     >
       <TestProgress />
-      <Flex direction="column">
-        <Text
-          fontWeight="bold"
-          align="center"
-        >
+      <Flex direction="column" gap={3}>
+        <Text fontWeight="900" align="center" opacity={0.72}>
           #{currentPersonalityTestIndex + 1}
         </Text>
-        <Text
-          fontSize="lg"
-          align="center"
-        >
+        <Text fontSize="lg" align="center" fontWeight="700">
           {personalityTest[currentPersonalityTestIndex].question}
         </Text>
       </Flex>
-      <Flex
-        w="full"
-        gap={4}
-        direction="column"
-        {...group}
-      >
+      <Flex w="full" gap={4} direction="column" {...group}>
         {personalityTest[currentPersonalityTestIndex].answerOptions.map(
           (answerOption) => {
             const radio = getRadioProps({ value: answerOption.type });
 
             return (
-              <TestAnswerOption
-                key={answerOption.type}
-                {...radio}
-              >
+              <TestAnswerOption key={answerOption.type} {...radio}>
                 {answerOption.answer}
               </TestAnswerOption>
             );
           }
         )}
       </Flex>
-      <Flex
-        direction="row"
-        w="full"
-        gap={4}
-      >
+      <Flex direction="row" w="full" gap={4}>
         <Button
           w="full"
           variant="solid"
           rounded="18px"
           bg={secondaryButtonBg}
           color={secondaryButtonColor}
-          border="1px solid"
-          borderColor={secondaryBorderColor}
+          border="1px solid rgba(255,255,255,0.15)"
+          boxShadow="0 10px 24px rgba(143,175,214,.12)"
           _hover={{ bg: secondaryHoverBg }}
-          _disabled={{ opacity: .56, color: secondaryButtonColor, bg: secondaryButtonBg, cursor: "not-allowed" }}
-          {...(currentPersonalityTestIndex === 0 && {
-            disabled: true,
-          })}
+          _disabled={{
+            opacity: .56,
+            color: secondaryButtonColor,
+            bg: secondaryButtonBg,
+            cursor: "not-allowed",
+            boxShadow: "none",
+          }}
+          {...(currentPersonalityTestIndex === 0 && { disabled: true })}
           onClick={handlePreviousButtonClick}
         >
           上一题
         </Button>
         {isUserAlreadyPickAnswer &&
         currentPersonalityTestIndex === personalityTest.length - 1 ? (
-          <Button
-            w="full"
-            colorScheme="primary"
-            rounded="18px"
-            onClick={handleSeeResultButtonClick}
-          >
+          <Button w="full" colorScheme="primary" onClick={handleSeeResultButtonClick}>
             查看结果
           </Button>
         ) : (
           <Button
             w="full"
             colorScheme="primary"
-            rounded="18px"
             variant="solid"
-            {...(!isUserAlreadyPickAnswer && {
-              disabled: true,
-            })}
+            {...(!isUserAlreadyPickAnswer && { disabled: true })}
             onClick={handleNextButtonClick}
           >
             下一题

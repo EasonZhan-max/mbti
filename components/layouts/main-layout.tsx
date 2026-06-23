@@ -10,6 +10,8 @@ import { withBasePath } from "../../lib/asset-path";
 interface MainLayoutProps {
   children: ReactNode;
   hideBackground?: boolean;
+  lockViewport?: boolean;
+  hideFooter?: boolean;
 }
 
 export default function MainLayout(props: MainLayoutProps) {
@@ -20,48 +22,38 @@ export default function MainLayout(props: MainLayoutProps) {
     <>
       <Head>
         <title>MBTI 性格测试 | Eason</title>
-        <meta
-          name="description"
-          content="Eason 的 MBTI 性格测试"
-        />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
-        <link
-          rel="icon"
-          href={withBasePath("/favicon.ico")}
-        />
+        <meta name="description" content="Eason 的 MBTI 性格测试" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href={withBasePath("/favicon.ico")} />
       </Head>
       <Box
         w="full"
         minH="100vh"
+        h={props.lockViewport ? { base: "auto", lg: "100vh" } : "auto"}
         position="relative"
-        overflow="hidden"
+        overflow={props.lockViewport ? { base: "auto", lg: "hidden" } : "auto"}
         bg={pageBg}
         color={pageColor}
       >
         {!props.hideBackground && <EasonBackground />}
-        <Box
-          position="relative"
-          zIndex={1}
-          minH="100vh"
-        >
+        <Box position="relative" zIndex={1} minH="100vh">
           <Nav />
           <Flex
             as="main"
             w="100%"
-            minH="calc(100vh - 96px)"
+            minH={props.lockViewport ? { base: "calc(100vh - 96px)", lg: "calc(100vh - 96px)" } : "calc(100vh - 96px)"}
+            h={props.lockViewport ? { base: "auto", lg: "calc(100vh - 96px)" } : "auto"}
             justifyContent="center"
-            alignItems="center"
+            alignItems={props.lockViewport ? { base: "center", lg: "stretch" } : "center"}
             position="relative"
             px={{ base: 3, md: 6 }}
+            overflow={props.lockViewport ? { base: "visible", lg: "hidden" } : "visible"}
           >
             {props.children}
           </Flex>
         </Box>
       </Box>
-      <Footer />
+      {!props.hideFooter && <Footer />}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Flex, Button, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Button } from "@chakra-ui/react";
 import { RiInformationLine } from "react-icons/ri";
 
 import TestTimer from "./test-timer";
@@ -8,11 +8,6 @@ interface TestMenuProps {
 }
 
 export default function TestMenu(props: TestMenuProps) {
-  const buttonBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .12)");
-  const buttonColor = useColorModeValue("#17232c", "#f4f9fb");
-  const borderColor = useColorModeValue("rgba(86, 119, 137, .22)", "rgba(255, 255, 255, .18)");
-  const hoverBg = useColorModeValue("rgba(255, 255, 255, .94)", "rgba(255, 255, 255, .2)");
-
   return (
     <Flex
       width="full"
@@ -20,23 +15,21 @@ export default function TestMenu(props: TestMenuProps) {
       px={4}
       direction="column"
       justifyContent="center"
-      alignItems="flex-end"
+      alignItems="center"
       gap={2}
+      position="relative"
+      zIndex={2}
     >
-      <Flex gap={3}>
+      <Flex gap={3} wrap="wrap" justifyContent="center">
         <TestTimer />
         <Button
           aria-label="instructions"
+          colorScheme="primary"
           variant="solid"
           leftIcon={<RiInformationLine size={24} />}
           onClick={props.onShowInstructionsButtonClick}
-          h={11}
-          rounded="16px"
-          bg={buttonBg}
-          color={buttonColor}
-          border="1px solid"
-          borderColor={borderColor}
-          _hover={{ bg: hoverBg, transform: "translateY(-1px)" }}
+          h={12}
+          px={6}
         >
           说明
         </Button>

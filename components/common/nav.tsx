@@ -1,23 +1,33 @@
 import Link from "next/link";
-import { Flex, Button, useColorModeValue } from "@chakra-ui/react";
+import {
+  Flex,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { BiHistory } from "react-icons/bi";
+import { FiChevronDown, FiUser } from "react-icons/fi";
 
 import ThemeToggle from "./theme-toggle";
 
 export default function Nav() {
   const navBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(9, 16, 24, .58)");
   const navColor = useColorModeValue("#17232c", "white");
-  const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "whiteAlpha.200");
-  const hoverColor = useColorModeValue("primary.700", "primary.100");
-  const actionBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(255, 255, 255, .12)");
-  const actionHoverBg = useColorModeValue("rgba(255, 255, 255, .94)", "rgba(255, 255, 255, .2)");
+  const borderColor = "rgba(255,255,255,0.15)";
+  const hoverColor = useColorModeValue("#5F83AE", "#D8E6F8");
+  const buttonBg = useColorModeValue("rgba(255,255,255,.58)", "rgba(255,255,255,0.08)");
+  const buttonHoverBg = useColorModeValue("#D8E6F8", "rgba(216,230,248,.18)");
+  const menuBg = useColorModeValue("rgba(255,255,255,.94)", "rgba(14, 24, 34, .96)");
 
   return (
     <Flex
       as="nav"
       position="sticky"
       top={4}
-      zIndex={10}
+      zIndex={20}
       mt={4}
       mx="auto"
       py={3}
@@ -27,7 +37,7 @@ export default function Nav() {
       justifyContent="space-between"
       alignItems="center"
       gap={4}
-      overflowX="hidden"
+      overflowX="visible"
       border="1px solid"
       borderColor={borderColor}
       rounded="24px"
@@ -48,17 +58,56 @@ export default function Nav() {
         </Button>
       </Link>
       <Flex gap={3} alignItems="center">
+        <Menu placement="bottom-end">
+          <MenuButton
+            as={Button}
+            rightIcon={<FiChevronDown />}
+            bg={buttonBg}
+            color={navColor}
+            border="1px solid"
+            borderColor={borderColor}
+            rounded="16px"
+            boxShadow="0 10px 24px rgba(143,175,214,.18)"
+            _hover={{ bg: buttonHoverBg, transform: "translateY(-1px)" }}
+            _active={{ bg: buttonHoverBg }}
+          >
+            关于本站
+          </MenuButton>
+          <MenuList
+            bg={menuBg}
+            borderColor={borderColor}
+            rounded="18px"
+            p={2}
+            color={navColor}
+            backdropFilter="blur(18px)"
+            boxShadow="0 18px 50px rgba(0,0,0,.24)"
+          >
+            <MenuItem
+              as="a"
+              href="https://my.easonzhan.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              icon={<FiUser />}
+              rounded="14px"
+              bg="transparent"
+              _hover={{ bg: buttonHoverBg }}
+            >
+              关于站长
+            </MenuItem>
+          </MenuList>
+        </Menu>
         <ThemeToggle />
         <Link href="/test/result/history">
           <Button
             variant="solid"
             leftIcon={<BiHistory size={22} />}
-            bg={actionBg}
+            bg={buttonBg}
             color={navColor}
             border="1px solid"
             borderColor={borderColor}
             rounded="16px"
-            _hover={{ bg: actionHoverBg, transform: "translateY(-1px)" }}
+            boxShadow="0 10px 24px rgba(143,175,214,.18)"
+            _hover={{ bg: buttonHoverBg, transform: "translateY(-1px)" }}
             _active={{ transform: "translateY(0)" }}
           >
             测试历史

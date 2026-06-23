@@ -10,9 +10,9 @@ export default function TestTimer() {
   const [elapsedTime, setElapsedTime] = useState<Option<dayjs.Dayjs>>(
     Option.None()
   );
-  const bg = useColorModeValue("rgba(255, 255, 255, .68)", "rgba(255, 255, 255, .1)");
+  const bg = useColorModeValue("rgba(255,255,255,.64)", "rgba(255,255,255,0.08)");
   const color = useColorModeValue("#17232c", "#f4f9fb");
-  const borderColor = useColorModeValue("rgba(86, 119, 137, .22)", "rgba(255, 255, 255, .18)");
+  const borderColor = "rgba(255,255,255,0.15)";
 
   useEffect(() => {
     if (elapsedTime.isNone()) {
@@ -31,21 +31,23 @@ export default function TestTimer() {
 
   return (
     <Flex
-      width={120}
-      px={3}
-      h={11}
-      columnGap={2}
-      justifyContent="flex-start"
+      minW={136}
+      px={4}
+      h={12}
+      columnGap={3}
+      justifyContent="center"
       alignItems="center"
       border="1px solid"
       borderColor={borderColor}
-      rounded="16px"
+      rounded="18px"
       bg={bg}
       color={color}
-      fontWeight="800"
+      fontWeight="900"
+      boxShadow="0 10px 24px rgba(143,175,214,.18)"
+      backdropFilter="blur(14px)"
     >
-      <FiClock size={20} />
-      <Text fontWeight="bold">
+      <FiClock size={22} />
+      <Text fontWeight="900" fontSize="lg" sx={{ fontVariantNumeric: "tabular-nums" }}>
         {elapsedTime.match({
           Some: (elapsedTime) => {
             const minute = elapsedTime.minute().toString().padStart(2, "0");

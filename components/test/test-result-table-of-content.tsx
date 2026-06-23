@@ -9,7 +9,7 @@ export default function TestResultTableOfContent() {
   const cardBg = useColorModeValue("rgba(255, 255, 255, .72)", "rgba(18, 25, 31, .62)");
   const cardColor = useColorModeValue("#17232c", "#f4f9fb");
   const borderColor = useColorModeValue("rgba(86, 119, 137, .18)", "rgba(255, 255, 255, .18)");
-  const activeColor = useColorModeValue("primary.700", "primary.100");
+  const activeColor = useColorModeValue("#5F83AE", "#D8E6F8");
 
   const [headings, setHeadings] = useState<
     {
@@ -20,10 +20,7 @@ export default function TestResultTableOfContent() {
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll("h2")).map(
-      (element) => ({
-        id: element.id,
-        text: element.textContent!,
-      })
+      (element) => ({ id: element.id, text: element.textContent! })
     );
 
     setHeadings(elements);
@@ -35,19 +32,18 @@ export default function TestResultTableOfContent() {
   ) {
     event.preventDefault();
     setActiveId(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
     <Flex
-      mx={4}
-      my={4}
-      w={{
-        base: "25%",
-      }}
+      mx={{ base: 0, lg: 4 }}
+      my={{ base: 4, lg: 0 }}
+      w={{ base: "full", lg: "300px" }}
       h="min-content"
+      maxH={{ base: "none", lg: "calc(100vh - 132px)" }}
       p={4}
       gap={4}
-      top={5}
       border="1px solid"
       borderColor={borderColor}
       rounded="24px"
@@ -56,26 +52,25 @@ export default function TestResultTableOfContent() {
       backdropFilter="blur(22px) saturate(150%)"
       boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
       direction="column"
-      pos="sticky"
-      alignSelf="flex-start"
+      alignSelf={{ base: "stretch", lg: "flex-start" }}
+      flexShrink={0}
+      overflow="hidden"
     >
-      <Text fontWeight="bold">目录</Text>
-      <UnorderedList
-        spacing={2}
-        listStyleType="none"
-      >
+      <Text fontWeight="900" fontSize="lg">目录</Text>
+      <UnorderedList spacing={2} listStyleType="none" m={0}>
         {headings.map((heading, index) => (
           <ListItem
             key={index}
             fontSize="sm"
             cursor="pointer"
-            _hover={{
-              borderLeft: "4px solid rgba(111, 150, 172, .9)",
-              pl: 2,
-            }}
+            rounded="12px"
+            px={2}
+            py={1}
+            _hover={{ bg: "rgba(216,230,248,.14)" }}
             {...(heading.id === activeId && {
               color: activeColor,
               fontWeight: "bold",
+              bg: "rgba(216,230,248,.12)",
             })}
             onClick={(event) =>
               handleTableOfContentLinkClick(event, heading.id)

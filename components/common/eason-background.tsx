@@ -49,7 +49,7 @@ export default function EasonBackground() {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const target = Math.min(160, Math.max(72, Math.floor((width * height) / 11500)));
+      const target = isLight ? 0 : Math.min(160, Math.max(72, Math.floor((width * height) / 11500)));
       stars = stars.length
         ? stars.slice(0, target).map((star) => ({
             ...star,
@@ -68,10 +68,10 @@ export default function EasonBackground() {
       const height = window.innerHeight;
       ctx.clearRect(0, 0, width, height);
       const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      if (colorMode === "light") {
-        gradient.addColorStop(0, "rgba(247, 251, 253, 0.98)");
-        gradient.addColorStop(0.52, "rgba(235, 244, 249, 0.96)");
-        gradient.addColorStop(1, "rgba(221, 236, 244, 0.94)");
+      if (isLight) {
+        gradient.addColorStop(0, "rgba(247, 251, 253, 1)");
+        gradient.addColorStop(0.5, "rgba(235, 244, 249, 1)");
+        gradient.addColorStop(1, "rgba(221, 236, 244, 1)");
       } else {
         gradient.addColorStop(0, "rgba(4, 9, 18, 0.98)");
         gradient.addColorStop(0.52, "rgba(9, 16, 24, 0.96)");
@@ -80,22 +80,21 @@ export default function EasonBackground() {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
 
-      stars.forEach((star) => {
-        star.a += star.s;
-        const alpha = 0.25 + Math.abs(Math.sin(star.a)) * 0.75;
-        ctx.beginPath();
-        ctx.fillStyle =
-          colorMode === "light"
-            ? `rgba(86, 119, 137, ${0.28 + alpha * 0.42})`
-            : `rgba(159, 185, 201, ${alpha})`;
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
-        ctx.fill();
-        star.y += 0.05;
-        if (star.y > height) {
-          star.y = 0;
-          star.x = Math.random() * width;
-        }
-      });
+      if (!isLight) {
+        stars.forEach((star) => {
+          star.a += star.s;
+          const alpha = 0.25 + Math.abs(Math.sin(star.a)) * 0.75;
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(159, 185, 201, ${alpha})`;
+          ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+          ctx.fill();
+          star.y += 0.05;
+          if (star.y > height) {
+            star.y = 0;
+            star.x = Math.random() * width;
+          }
+        });
+      }
 
       animationFrameId = requestAnimationFrame(draw);
     };
@@ -109,11 +108,14 @@ export default function EasonBackground() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", resize);
     };
-  }, [colorMode]);
+  }, [isLight]);
 
   useEffect(() => {
     const layer = meteorLayerRef.current;
     if (!layer) return;
+
+    layer.innerHTML = "";
+    if (isLight) return;
 
     const createMeteor = () => {
       const meteor = document.createElement("span");
@@ -132,8 +134,9 @@ export default function EasonBackground() {
     return () => {
       window.clearInterval(intervalId);
       window.clearTimeout(firstTimer);
+      layer.innerHTML = "";
     };
-  }, []);
+  }, [isLight]);
 
   return (
     <Box
@@ -160,15 +163,10 @@ export default function EasonBackground() {
           width: "180px",
           height: "2px",
           borderRadius: "999px",
-          background:
-            isLight
-              ? "linear-gradient(90deg, rgba(106,139,157,.7), rgba(159,185,201,.22), transparent)"
-              : "linear-gradient(90deg, rgba(235,248,255,.95), rgba(204,231,246,.35), transparent)",
+          background: "linear-gradient(90deg, rgba(235,248,255,.95), rgba(204,231,246,.35), transparent)",
           transform: "rotate(-28deg)",
           opacity: 0,
-          filter: isLight
-            ? "drop-shadow(0 0 7px rgba(120,150,167,.18))"
-            : "drop-shadow(0 0 7px rgba(190,228,247,.35))",
+          filter: "drop-shadow(0 0 7px rgba(190,228,247,.35))",
         },
         ".eason-meteor.fly": {
           animation: "easonMeteorFly linear forwards",
@@ -196,10 +194,10 @@ export default function EasonBackground() {
           top: "18vh",
           borderRadius: "50%",
           filter: "blur(82px)",
-          opacity: isLight ? 0.34 : 0.18,
+          opacity: isLight ? 0.22 : 0.18,
           mixBlendMode: isLight ? "multiply" : "screen",
           background: isLight
-            ? "radial-gradient(circle, rgba(126,163,184,.28), transparent 70%)"
+            ? "radial-gradient(circle, rgba(126,163,184,.18), transparent 70%)"
             : "radial-gradient(circle, rgba(183,214,232,.34), transparent 70%)",
           animation: "easonFloatMist 22s ease-in-out infinite",
         }}
@@ -212,16 +210,16 @@ export default function EasonBackground() {
           top: "18vh",
           borderRadius: "50%",
           filter: "blur(82px)",
-          opacity: isLight ? 0.28 : 0.18,
+          opacity: isLight ? 0.18 : 0.18,
           mixBlendMode: isLight ? "multiply" : "screen",
           background: isLight
-            ? "radial-gradient(circle, rgba(202,219,229,.34), transparent 72%)"
+            ? "radial-gradient(circle, rgba(202,219,229,.22), transparent 72%)"
             : "radial-gradient(circle, rgba(236,211,226,.28), transparent 72%)",
           animation: "easonFloatMist 22s ease-in-out infinite",
           animationDelay: "-11s",
         }}
       />
-      <Box ref={meteorLayerRef} position="absolute" inset={0} zIndex={2} />
+      <Box ref={meteorLayerRef} position="absolute" inset={0} zIndex={2} display={isLight ? "none" : "block"} />
     </Box>
   );
 }
