@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
 
-const SITE_START_DATE = "2026-06-04T00:00:00+08:00";
+const SITE_START_DATE = "2026-06-23T18:00:00+08:00";
 
 function formatRuntime(ms: number) {
   const totalSeconds = Math.max(0, Math.floor(ms / 1000));
-  const years = Math.floor(totalSeconds / (365 * 24 * 60 * 60));
-  const days = Math.floor((totalSeconds % (365 * 24 * 60 * 60)) / (24 * 60 * 60));
+  const days = Math.floor(totalSeconds / (24 * 60 * 60));
   const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
   const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
   const seconds = totalSeconds % 60;
 
-  return `${years}年 ${days}天 ${String(hours).padStart(2, "0")}时 ${String(minutes).padStart(2, "0")}分 ${String(seconds).padStart(2, "0")}秒`;
+  return `${days}天 ${String(hours).padStart(2, "0")}时 ${String(minutes).padStart(2, "0")}分 ${String(seconds).padStart(2, "0")}秒`;
 }
 
 export default function Footer() {
-  const [runtime, setRuntime] = useState("0年 0天 00时 00分 00秒");
+  const [runtime, setRuntime] = useState("0天 00时 00分 00秒");
   const bg = useColorModeValue("rgba(237, 246, 251, .78)", "rgba(9, 16, 24, .74)");
   const color = useColorModeValue("#17232c", "whiteAlpha.900");
   const mutedColor = useColorModeValue("rgba(23, 35, 44, .62)", "whiteAlpha.600");

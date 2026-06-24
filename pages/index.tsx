@@ -16,6 +16,7 @@ export default function HomePage() {
   const textColor = useColorModeValue("#314a59", "whiteAlpha.800");
   const highlightBg = useColorModeValue("rgba(159, 185, 201, .2)", "rgba(159, 185, 201, .22)");
   const highlightColor = useColorModeValue("#17232c", "white");
+  const linkColor = useColorModeValue("#5F83AE", "#D8E6F8");
 
   return (
     <MainLayout>
@@ -108,23 +109,23 @@ export default function HomePage() {
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
               感谢
-              <ChakraLink href="https://github.com/vsme" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
+              <ChakraLink href="https://github.com/vsme" target="_blank" rel="noopener noreferrer" color={linkColor} fontWeight="700" ml={1} mr={1}>
                 Yawei Sun
               </ChakraLink>
-              <ChakraLink href="https://github.com/rauf-21" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
+              <ChakraLink href="https://github.com/rauf-21" target="_blank" rel="noopener noreferrer" color={linkColor} fontWeight="700" ml={1} mr={1}>
                 rauf
               </ChakraLink>
-              提供的技术数据开源。
+              提供的开源。
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
               本站作者
-              <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1}>
+              <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color={linkColor} fontWeight="700" ml={1}>
                 Eason
               </ChakraLink>
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor}>
               本站测试都基于此
-              <ChakraLink href={withBasePath("/MBTI-personality-test.pdf")} target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1}>
+              <ChakraLink href={withBasePath("/MBTI-personality-test.pdf")} target="_blank" rel="noopener noreferrer" color={linkColor} fontWeight="700" ml={1}>
                 来源
               </ChakraLink>
             </Text>
