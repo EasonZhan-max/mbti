@@ -109,7 +109,7 @@ export default function HomePage() {
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
               感谢
               <ChakraLink href="https://github.com/vsme" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
-                Rauf
+                Yawei Sun
               </ChakraLink>
               <ChakraLink href="https://github.com/rauf-21" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
                 rauf
