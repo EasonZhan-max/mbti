@@ -118,12 +118,8 @@ export default function HomePage() {
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
               本站作者
-              <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1} mr={1}>
-                Eason
-              </ChakraLink>
-              主页链接：
               <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color="primary.500" fontWeight="700" ml={1}>
-                https://github.com/EasonZhan-max
+                Eason
               </ChakraLink>
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor}>
