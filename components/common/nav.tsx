@@ -55,7 +55,7 @@ export default function Nav() {
           textTransform="uppercase"
           _hover={{ color: hoverColor, textDecoration: "none" }}
         >
-          MBTI 性格测试
+          MBTI性格测试
         </Button>
       </Link>
       <Flex gap={3} alignItems="center">
