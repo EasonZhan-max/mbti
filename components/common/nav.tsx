@@ -85,7 +85,7 @@ export default function Nav() {
           >
             <MenuItem
               as="a"
-              href="https://my.easonzhan.xyz"
+              href="https://me.easonzhan.xyz"
               target="_blank"
               rel="noopener noreferrer"
               icon={<FiUser />}

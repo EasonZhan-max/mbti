@@ -22,17 +22,17 @@ export default function HomePage() {
     <MainLayout>
       <Flex
         w="full"
-        minH="auto"
+        minH={{ base: "calc(100vh - 250px)", md: "calc(100vh - 270px)" }}
         alignItems="center"
         justifyContent="center"
         px={{ base: 2, md: 4 }}
         py={{ base: 2, md: 3 }}
       >
         <Box
-          w="min(860px, 100%)"
-          minH={{ base: "360px", md: "460px" }}
-          px={{ base: 5, md: 10 }}
-          py={{ base: 7, md: 9 }}
+          w="min(820px, 100%)"
+          minH={{ base: "340px", md: "430px" }}
+          px={{ base: 5, md: 9 }}
+          py={{ base: 6, md: 8 }}
           border="1px solid"
           borderColor={borderColor}
           rounded="32px"
@@ -119,7 +119,7 @@ export default function HomePage() {
             </Text>
             <Text fontSize={{ base: "sm", md: "md" }} color={textColor} mb={2} lineHeight="1.7">
               本站作者
-              <ChakraLink href="https://github.com/EasonZhan-max" target="_blank" rel="noopener noreferrer" color={linkColor} fontWeight="700" ml={1}>
+              <ChakraLink href="https://github.com/EasonZe" target="_blank" rel="noopener noreferrer" color={linkColor} fontWeight="700" ml={1}>
                 Eason
               </ChakraLink>
             </Text>

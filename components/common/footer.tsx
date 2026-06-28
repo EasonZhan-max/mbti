@@ -35,14 +35,17 @@ export default function Footer() {
       justifyContent="center"
       px={{ base: 3, md: 6 }}
       pb={{ base: 4, md: 6 }}
-      pt={{ base: 1, md: 2 }}
+      pt={{ base: 8, md: 10 }}
+      direction="column"
+      alignItems="center"
+      gap={{ base: 3, md: 4 }}
     >
       <Flex
         w={{ base: "100%", md: "min(1180px, calc(100% - 28px))" }}
-        minH={{ base: "88px", md: "124px" }}
-        px={{ base: 5, md: 10 }}
-        py={{ base: 4, md: 6 }}
-        rounded={{ base: "24px", md: "32px" }}
+        minH={{ base: "72px", md: "88px" }}
+        px={{ base: 4, md: 8 }}
+        py={{ base: 3, md: 4 }}
+        rounded={{ base: "22px", md: "28px" }}
         bg={cardBg}
         color={color}
         border="1px solid rgba(255,255,255,0.15)"
@@ -53,7 +56,7 @@ export default function Footer() {
         alignItems="center"
         justifyContent="center"
         direction="column"
-        gap={1}
+        gap={0}
         _before={{
           content: '""',
           position: "absolute",
@@ -69,8 +72,8 @@ export default function Footer() {
       >
         <Text
           fontWeight="900"
-          fontSize={{ base: "2xl", md: "4xl" }}
-          lineHeight="1"
+          fontSize={{ base: "xl", md: "2xl" }}
+          lineHeight="1.1"
           textAlign="center"
           sx={{ fontVariantNumeric: "tabular-nums" }}
           position="relative"
@@ -78,10 +81,13 @@ export default function Footer() {
         >
           {runtime}
         </Text>
-        <Text color={mutedColor} fontWeight="700" fontSize={{ base: "md", md: "2xl" }} position="relative" zIndex={1}>
+        <Text color={mutedColor} fontWeight="700" fontSize={{ base: "sm", md: "md" }} position="relative" zIndex={1}>
           运行时间
         </Text>
       </Flex>
+      <Text color={mutedColor} fontSize={{ base: "sm", md: "md" }} textAlign="center">
+        © 2026 Eason. All Rights Reserved.
+      </Text>
     </Flex>
   );
 }
