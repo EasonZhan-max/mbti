@@ -44,7 +44,7 @@ export default function MainLayout(props: MainLayoutProps) {
           <Flex
             as="main"
             w="100%"
-            minH={{ base: "calc(100vh - 102px)", md: "calc(100vh - 116px)" }}
+            minH={{ base: "100vh", md: "100vh" }}
             justifyContent="center"
             alignItems={props.lockViewport ? { base: "center", lg: "stretch" } : "center"}
             position="relative"

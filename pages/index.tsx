@@ -22,7 +22,7 @@ export default function HomePage() {
     <MainLayout>
       <Flex
         w="full"
-        minH={{ base: "calc(100vh - 250px)", md: "calc(100vh - 270px)" }}
+        minH={{ base: "calc(100vh - 120px)", md: "calc(100vh - 130px)" }}
         alignItems="center"
         justifyContent="center"
         px={{ base: 2, md: 4 }}
@@ -30,21 +30,38 @@ export default function HomePage() {
       >
         <Box
           w="min(820px, 100%)"
-          minH={{ base: "340px", md: "430px" }}
+          minH={{ base: "360px", md: "450px" }}
           px={{ base: 5, md: 9 }}
           py={{ base: 6, md: 8 }}
           border="1px solid"
           borderColor={borderColor}
           rounded="32px"
           bg={cardBg}
-          bgImage={cardBackground}
-          bgRepeat="no-repeat"
-          bgSize="cover"
-          bgPosition="center center"
           backdropFilter="blur(22px) saturate(150%)"
           boxShadow="0 24px 80px rgba(0, 0, 0, .2)"
           textAlign="center"
+          position="relative"
+          overflow="hidden"
+          isolation="isolate"
         >
+          <Box
+            position="absolute"
+            inset={0}
+            zIndex={0}
+            bgImage={cardBackground}
+            bgRepeat="no-repeat"
+            bgSize="cover"
+            bgPosition="center center"
+            transform="scale(1.03)"
+            filter={useColorModeValue("blur(18px)", "blur(12px)")}
+          />
+          <Box
+            position="absolute"
+            inset={0}
+            zIndex={0}
+            bg={useColorModeValue("rgba(255,255,255,.26)", "rgba(5,10,16,.16)")}
+          />
+          <Box position="relative" zIndex={1}>
           <Heading
             as="h1"
             lineHeight="tall"
@@ -128,6 +145,7 @@ export default function HomePage() {
                 来源
               </ChakraLink>
             </Text>
+          </Box>
           </Box>
         </Box>
       </Flex>
